@@ -1,29 +1,28 @@
 <template>
-  <div>
-    <b-notification v-if="error" type="is-danger" has-icon>
-      {{ error.message }}
-    </b-notification>
-    <form @submit.prevent="signup">
-      <b-field label="Username">
-        <b-input v-model="username" required maxlength="30"></b-input>
-      </b-field>
-
-       <b-field label="Name">
-        <b-input v-model="name" required maxlength="30"></b-input>
-      </b-field>
-
-        <b-field label="Password">
-            <b-input
-              type="password"
-              required
-              v-model="password"
-              password-reveal
-            >
-            </b-input>
-        </b-field>
-
-        <button class="button is-primary">Signup</button>
-      </form>
+<div>
+  <v-alert color="error" dismissible v-if="error">
+    {{ error.message }}
+  </v-alert>
+  <v-form @submit.prevent="signup">
+    <v-text-field
+      label="Name"
+      v-model="name"
+      required
+    ></v-text-field>
+    <v-text-field
+      label="Username"
+      v-model="username"
+      :counter="30"
+      required
+    ></v-text-field>
+    <v-text-field
+      label="Password"
+      v-model="password"
+      type="password"
+      required
+    ></v-text-field>
+    <v-btn type="submit">Signup</v-btn>
+  </v-form>
   </div>
 </template>
 

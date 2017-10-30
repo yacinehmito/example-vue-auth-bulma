@@ -1,19 +1,20 @@
 <template>
   <div>
-    <form @submit.prevent="login">
-      <b-field label="Username">
-            <b-input v-model="username" maxlength="30"></b-input>
-        </b-field>
-
-        <b-field label="Password">
-            <b-input type="password"
-                v-model="password"
-                password-reveal>
-            </b-input>
-        </b-field>
-
-      <button class="button is-primary">Login</button>
-    </form>
+    <v-form @submit.prevent="login">
+      <v-text-field
+        label="Username"
+        v-model="username"
+        :counter="30"
+        required
+      ></v-text-field>
+      <v-text-field
+        label="Password"
+        v-model="password"
+        type="password"
+        required
+      ></v-text-field>
+      <v-btn type="submit">Login</v-btn>
+    </v-form>
   </div>
 </template>
 
@@ -28,7 +29,6 @@ export default {
       password: '',
     }
   },
-
   methods: {
     login () {
       login(this.username, this.password, this.$root).then(data => {
@@ -46,4 +46,3 @@ export default {
     margin: auto;
   }
 </style>
-

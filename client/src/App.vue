@@ -1,55 +1,44 @@
 <template>
-  <div id="app">
-   <nav class="navbar is-transparent">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="https://bulma.io">
-          <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
-        </a>
-
-
-        <div class="navbar-burger burger" data-target="navMenuTransparentExample">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-
-      <div id="navMenuTransparentExample" class="navbar-menu">
-        <div class="navbar-end">
-          <router-link to="/dashboard" class="navbar-item ">
-            Dashboard
-          </router-link>
-          <router-link v-if="!$root.user" to="/login" class="navbar-item ">
-            Login
-          </router-link>
-          <router-link v-if="!$root.user" to="/signup" class="navbar-item ">
-            Signup
-          </router-link>
-          <a class="navbar-item" @click.prevent="logout" v-if="$root.user" href="#">
-            Logout
-          </a>
-        </div>
-      </div>
-    </nav>
-
-    <section class="section">
-      <div class="container">
+  <v-app>
+    <v-toolbar fixed app>
+      <v-toolbar-title>My application</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-toolbar-items>
+        <v-btn flat to="/dashboard">
+          Dashboard
+        </v-btn>
+        <v-btn flat v-if="!$root.user" to="/login">
+          Login
+        </v-btn>
+        <v-btn flat v-if="!$root.user" to="/signup">
+          Signup
+        </v-btn>
+        <v-btn flat @click.prevent="logout" v-if="$root.user">
+          Logout
+        </v-btn>
+      </v-toolbar-items>
+    </v-toolbar>
+    <v-content>
+      <v-container fluid>
         <router-view></router-view>
-      </div>
-    </section>
-  </div>
+      </v-container>
+    </v-content>
+    <v-footer>
+      Footer content
+    </v-footer>
+  </v-app>
 </template>
 
 <script>
-import { logout } from '@/api/auth'
+import { logout } from "@/api/auth";
 export default {
-  name: 'app',
+  name: "app",
   methods: {
-    logout () {
-      logout(this.$root)
-      this.$router.push('/')
+    logout() {
+      logout(this.$root);
+      this.$router.push("/");
     }
   }
-}
+};
 </script>
 
